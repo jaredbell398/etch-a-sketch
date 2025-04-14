@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>Etch-A-Sketch</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .grid-container {
+        display: grid;
+        width: 960px;
+        height: 960px;
+      }
+
+      .grid-item {
+        background-color: lightgray;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Etch-A-Sketch</h1>
+
+    <div class="grid-container">
+      <script>
+        /* Asks the user for the number of roww/columns" */
+        let numRows = parseInt(prompt("Enter the number of rows for the grid:"));
+        let numCols = parseInt(prompt("Enter the number of columns for the grid:"));
+
+        /* Creates a grid container */
+        const gridContainer = document.querySelector(".grid-container");
+        const gridItemWidth = 960 / numCols;
+        const gridItemHeight = 960 / numRows;
+
+        gridContainer.style.gridTemplateColumns = `repeat(${numCols}, ${gridItemWidth}px)`;
+        gridContainer.style.gridTemplateRows = `repeat(${numRows}, ${gridItemHeight}px)`;
+
+        const totalCells = numRows * numCols; /* The total number of cells in the grid */
+
+        for(let i = 0; i < totalCells; i++) {
+          let gridItem = document.createElement("div");
+          gridItem.classList.add("grid-item");
+          gridItem.style.width = `${gridItemWidth}px`;
+          gridItem.style.height = `${gridItemHeight}px`;
+          gridContainer.appendChild(gridItem);
+
+          /* Draws over div when mouse cursor is hovering over it */
+          gridItem.addEventListener("mouseover", function() {
+          gridItem.style.backgroundColor = "black";
+          });
+        }
+
+        console.log("The resolution of the sketch pad is ")
+      </script>
+    </div>
+  </body>
+</html>
